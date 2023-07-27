@@ -1,0 +1,73 @@
+footer {
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  /* [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  }, */
+}
+link{
+  text-decoration: none;
+  color: 'rgba(21, 101, 192)';
+}
+image {
+  margin-left: 20px
+}
+card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 3%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(21, 101, 192);
+  margin: 0 12px;
+  text-align: center;
+  height: 25vmin;
+  /* [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column-reverse',
+    textAlign: 'center',
+    width: '100%',
+    height: 'initial',
+    '&:nth-of-type(1)': {
+      marginBottom: '12px',
+    },
+  }, */
+}
+infoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+  }, */
+}
+
+.logoContainer{
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    /* [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column-reverse',
+      textAlign: 'center',
+    }, */
+  }
+  .alanLogo {
+    height: 27vmin;
+    border-radius: 15%;
+    padding: 0 5%;
+    margin: 3% 0;
+    /* [theme.breakpoints.down('sm')]: {
+      height: '35vmin',
+    }, */
+  }
