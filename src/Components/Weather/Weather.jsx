@@ -11,7 +11,7 @@ const Weather = ({ Weather }) => {
         {/* City name */}
         <h6 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{Weather.name}</h6>
         {/* Tempreture in celcius of the City */}
-        <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{Weather.temp}° C</h5>
+        <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{Weather.temp}° F</h5>
         {/* Situation of the Weather of City */}
         <p className="font-medium text-2xl text-gray-700 dark:text-gray-400">{Weather.desc}</p>
         {/* Level of Humidity of City */}

@@ -80,7 +80,7 @@ const NewsCards = ({ articles,activeArticle }) => {
           return (
             <Grid
               item
-              key={article._id}
+              key={article.article_id}
               xs={12}
               sm={6}
               md={6}

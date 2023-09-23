@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 // Importing the required libraries for the project
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import alanBtn from '@alan-ai/alan-sdk-web';
 import NewsCards from "./Components/News/NewsCards";
 import { Box, CardMedia } from "@mui/material";
@@ -13,7 +13,7 @@ import axios from "axios";
 
 // Alan AI Voice Assistant API key
 
-const alanKey = 'b4ca04be415c55c2fcb68dc0810b885e2e956eca572e1d8b807a3e2338fdd0dc/stage';
+const alanKey = 'aab2326feeacb949fcb68dc0810b885e2e956eca572e1d8b807a3e2338fdd0dc/stage';
 
 
 const App = () => {
@@ -65,48 +65,50 @@ const App = () => {
       // put the API key in the API using procedure
       key: alanKey,
       // receiving the commands from backend of Alan AI from ALan AI Studio
-      onCommand: async ({ command, articles, number, Weather }) => {
+      onCommand: async ({ command, articles,number, Weather}) => {
         // for "newHeadline" Command to fetching the news on user request
         if (command === 'newHeadline') {
-          console.log(articles);
+          // console.log(articles);
           setNewsArticles(articles)
           setActiveArticle(-1)
           setweatherUpdate()
           setSummary()
         }
 
-        // for "highlight" Command to reading the title of news on user request
+        //     // for "highlight" Command to reading the title of news on user request
         else if (command === 'highlight') {
           setActiveArticle((prevActiveArticle) => prevActiveArticle + 1)
           setSummary()
           setweatherUpdate()
         }
 
-        // for "open" Command to open the link on user request
+        //  for "open" Command to open the link on user request
         else if (command === 'open') {
           // logic for converting the words into numbers through words-to-numbers library
           const parsedNumber = wordToNumbers(number, { fuzzy: true })
           const article = articles[parsedNumber - 1];
-          console.log(article)
+          // console.log(article)
           setSummary()
           setweatherUpdate()
 
           // if article available then open the article in new tab
           if (article) {
-            window.open(article.link, "_blank")
+            let articleLink = article.link?article.link:article.url
+            window.open(articleLink, "_blank")
           }
           // console.log(parsedNumber);
 
         }
 
-        // for "weather" Command to show the weather updates on user request
+        //     // for "weather" Command to show the weather updates on user request
         else if (command === 'weather') {
           setweatherUpdate(Weather)
+          window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
           setSummary()
-          console.log(Weather)
+          // console.log(Weather)
         }
 
-        // for "Summarizer" Command to summarize the article on user request
+        //     // for "Summarizer" Command to summarize the article on user request
         else if (command === 'Summarizer') {
           setweatherUpdate()
           setSummary()
@@ -115,20 +117,21 @@ const App = () => {
           // logic for converting the words into numbers using word-to-numbers library
           const parsedNumber = wordToNumbers(number, { fuzzy: true })
           const article = await articles[parsedNumber - 1];
-          // console.log({articles,article})
 
           // If article available that is requested by user the summarize the article
           if (article) {
-            console.log(article.link)
+            // console.log(article.link)
             setSummary(article)
-            await handleSummary(article.link)
+            let articleLink = article.link?article.link:article.url
+            await handleSummary(articleLink)
           }
 
         }
       }
-    });
+    })
   }, []);
 
+  // console.log(newsArticles);
 
   return (
     <>
@@ -138,14 +141,11 @@ const App = () => {
         <Box className="w-[12rem]">
           {/* Logo Image */}
           <CardMedia
-            // style={Styles.alanLogo}
-            // sm={Styles.alanLogo.sm}
             className="my-12"
             component="img"
             alt="alan ai image"
             src='/alan-logo-horizontal-color.png'
           />
-          {/* <imag style={Styles.alanLogo}  src='https://voicebot.ai/wp-content/uploads/2019/10/alan.jpg' alt="alan ai image" /> */}
         </Box>
         {/* If there is data in weatherUpdate available then run this either do nothing */}
         {weatherUpdate ? <Weather Weather={weatherUpdate} /> : ""}
